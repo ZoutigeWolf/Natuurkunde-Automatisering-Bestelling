@@ -18,7 +18,7 @@ def main():
     return render_template("home.html")
 
 @app.route("/orders")
-def orders():
+def getOrders():
     return "Orders"
 
 @app.route("/new-order")
