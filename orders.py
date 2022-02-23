@@ -3,7 +3,7 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 orders = {"orders": []}
-#test
+
 nextId = 0
 
 def getId():
