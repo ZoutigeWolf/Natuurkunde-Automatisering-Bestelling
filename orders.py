@@ -39,21 +39,19 @@ def apiNewOrder():
     
     orders["orders"].append(data)
 
-    return f"Order added successfully", returnData
+    return returnData, 201
 
 @app.route("/api/delete-order", methods=["DELETE"])
 def apiDeleteOrder():
     data = request.get_json()
     orderId = data["order_id"]
 
-    deleted = False
-
     for order in orders["orders"]:
         if order["order_id"] == orderId:
             orders["orders"].remove(order)
-            deleted = True
+            return order, 200
 
-    return f"Deleted order {orderId}" if deleted else f"Order {orderId} not found"
+    return f"Order {orderId} not found.", 404
 
 if __name__ == "__main__":
     app.run(port=6969)
