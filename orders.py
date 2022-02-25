@@ -32,7 +32,7 @@ def newOrder():
     return "New Orders"
 
 @app.route("/api/orders", methods=["GET"])
-def apiOrders():
+def apiGetOrders():
     return orders
 
 @app.route("/api/new-order", methods=["POST"])
