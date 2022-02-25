@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+import json
 
 app = Flask(__name__)
 
@@ -23,6 +24,11 @@ def getOrders():
 
 @app.route("/new-order")
 def newOrder():
+    f = open("items.json")
+    items = json.load(f)["items"]
+    f.close()
+
+
     return "New Orders"
 
 @app.route("/api/orders", methods=["GET"])
