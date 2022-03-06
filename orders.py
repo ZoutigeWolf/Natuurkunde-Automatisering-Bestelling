@@ -3,7 +3,7 @@ import json
 
 app = Flask(__name__)
 
-items = {}
+items = []
 
 orders = {"orders": []}
 
@@ -18,7 +18,7 @@ def getId():
 
 def loadItems():
     with open("items.json") as f:
-        items = json.load(f)
+        items = json.load(f)["items"]
         f.close()
         print(items)
 
@@ -28,16 +28,11 @@ def main():
 
 @app.route("/orders")
 def getOrders():
-    return "Orders"
+    return render_template("orders.html", orders=orders["orders"])
 
 @app.route("/new-order")
 def newOrder():
-    f = open("items.json")
-    items = json.load(f)["items"]
-    f.close()
-
-
-    return "New Orders"
+    return render_template("newOrder.html")
 
 @app.route("/api/orders", methods=["GET"])
 def apiGetOrders():
