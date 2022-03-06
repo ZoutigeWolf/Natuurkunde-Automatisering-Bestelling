@@ -3,6 +3,8 @@ import json
 
 app = Flask(__name__)
 
+items = {}
+
 orders = {"orders": []}
 
 nextId = 0
@@ -13,6 +15,12 @@ def getId():
     id = nextId
     nextId += 1
     return id
+
+def loadItems():
+    with open("items.json") as f:
+        items = json.load(f)
+        f.close()
+        print(items)
 
 @app.route("/")
 def main():
@@ -60,4 +68,5 @@ def apiDeleteOrder():
     return f"Order {orderId} not found.", 404
 
 if __name__ == "__main__":
+    loadItems()
     app.run(host="0.0.0.0", port=6969)
